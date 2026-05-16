@@ -61,7 +61,7 @@ class HardwareApp:
         self.root.geometry("1400x850")
         self.root.configure(bg="#f0f2f5")
 
-        # ১. আগে ইন্টারফেসের মেইন টাইটেল এবং ট্যাব সেটআপ করুন
+        # ১. আগে ইন্টারফেসের মেইন টাইটেল এবং ট্যাব সেটআপ
         tk.Label(self.root, text="🛒 তৈয়্যবিয়া স্টোর ইনভেন্টরি ও স্মার্ট রিপোর্ট সিস্টেম", 
                  font=("Arial", 20, "bold"), bg="#2c3e50", fg="white", pady=15).pack(fill="x")
 
@@ -75,7 +75,7 @@ class HardwareApp:
         self.tabs.add(self.t3, text=" কাস্টমার পেমেন্ট ও বকেয়া ")
         self.tabs.pack(expand=1, fill="both", padx=10, pady=10)
 
-        # ২. সব ট্যাব এবং ডাটা লোড ফাংশন কল করা
+        # ২. সব ট্যাব এবং ডাটা লোড ফাংশন কল
         self.setup_tab1()
         self.setup_tab2()
         self.setup_tab3()
@@ -116,7 +116,7 @@ class HardwareApp:
         conn.close()
 
     def setup_tab1(self):
-        """ট্যাব ১: ইনভেন্টরি এন্ট্রি এবং স্টক ম্যানেজমেন্ট (সব ফিচারসহ সংশোধিত)"""
+        """ট্যাব ১: ইনভেন্টরি এন্ট্রি এবং স্টক ম্যানেজমেন্ট (সব ফিচারস)"""
         
         # --- মেইন লেআউট ফ্রেম ---
         f_left = tk.Frame(self.t1, bg="#f0f2f5")
@@ -141,7 +141,7 @@ class HardwareApp:
         ent_date.insert(0, datetime.now().strftime("%Y-%m-%d"))
         self.entries_buy['date'] = ent_date
 
-        # সাজেশন লিস্টবক্স তৈরি (আগের মতোই আছে)
+        # সাজেশন লিস্টবক্স তৈরি
         self.name_listbox = tk.Listbox(self.t1, height=5, exportselection=0)
         self.comp_listbox = tk.Listbox(self.t1, height=5, exportselection=0)
         self.cust_listbox = tk.Listbox(self.t2, height=5, exportselection=0) 
@@ -156,7 +156,7 @@ class HardwareApp:
         self.entries_buy['comp'] = tk.Entry(f_buy, width=20)
         self.entries_buy['comp'].grid(row=2, column=1, pady=2)
 
-        # --- নতুন বাইন্ডিং যোগ করা হয়েছে (সাজেশন গায়েব করার জন্য) ---
+        # --- নতুন বাইন্ডিং যোগ করা হয়েছে (সাজেশন লুকিয়ে ফেলার করার জন্য) ---
         self.entries_buy['name'].bind('<KeyRelease>', lambda e: self.show_suggestions(e, 'name'))
         self.entries_buy['comp'].bind('<KeyRelease>', lambda e: self.show_suggestions(e, 'company'))
 
@@ -185,7 +185,7 @@ class HardwareApp:
                   command=self.add_product).grid(row=6, columnspan=2, pady=10, sticky="ew")
 
         # ---------------------------------------------------------
-        # ২. পণ্য বিক্রি ফর্ম (Sale Section - আগের ফিচার সব আছে)
+        # ২. পণ্য বিক্রি ফর্ম (Sale Section)
         # ---------------------------------------------------------
         f_sale = tk.LabelFrame(f_left, text=" ২. মাল বিক্রি ও অ্যাকশন ", font=("Arial", 11, "bold"), 
                                padx=15, pady=10, bg="white", fg="#e67e22")
@@ -230,7 +230,7 @@ class HardwareApp:
                   command=self.generate_invoice_by_id).grid(row=9, columnspan=2, pady=5, sticky="ew")
 
         # ---------------------------------------------------------
-        # ৩. ডান পাশ: স্মার্ট ফিল্টার বার (সব আগের মতোই আছে)
+        # ৩. ডান পাশ: স্মার্ট ফিল্টার বার ()
         # ---------------------------------------------------------
         f_filter = tk.Frame(f_right, bg="white")
         f_filter.pack(fill="x", pady=5)
@@ -344,7 +344,7 @@ class HardwareApp:
         self.lbl_stats.pack(pady=10)
 
         # --- ৩. স্ট্যাটাস ও রিপোর্ট কার্ড সেকশন ---
-        # পুরোনো lbl_stats টিকে একটি কন্টেইনার ফ্রেম দিয়ে রিপ্লেস করছি
+        
         card_container = tk.Frame(self.t2, bg="#f0f2f5")
         card_container.pack(fill="x", padx=20, pady=10)
 
@@ -698,9 +698,9 @@ class HardwareApp:
             c.line(50, 100, width - 50, 100) # নিচের দিকে একটি লাইন
             
             c.setFont("Helvetica", 9)
-            c.drawString(50, 85, "Payment: Bkash/Nagad: +8801885399297")
+            c.drawString(50, 85, "Payment: Bkash/Nagad: +8801234567891")
             
-            # আপনার বিশেষ টেক্সটটি একদম নিচে বামে থাকবে
+            # মুদ্রনে টেক্সটটি একদম নিচে বামে থাকবে
             c.setFont("Helvetica-Oblique", 8)
             c.drawString(50, 70, "Printing: Ba. I. Front") # মুদ্রনেঃ বাঃ ইঃ ফ্রন্ট
 
@@ -1102,7 +1102,7 @@ class HardwareApp:
         conn = sqlite3.connect('ts_hardware_ultimate.db')
         cursor = conn.cursor()
         
-        # আপনার refresh_data এর মতোই এখানে কলামের নামগুলো নির্দিষ্ট করে দিন
+        # refresh_data এর মতোই এখানে কলামের নামগুলো নির্দিষ্ট কর
         query = "SELECT id, name, company, unit, stock, cost_price FROM products WHERE name LIKE ? OR company LIKE ?"
         cursor.execute(query, (f'%{keyword}%', f'%{keyword}%'))
         
@@ -1303,4 +1303,3 @@ if __name__ == "__main__":
 
     root.protocol("WM_DELETE_WINDOW", on_closing)
     root.mainloop()
-    
